@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FOR REVENGE — OFFICIAL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,400;1,700&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --text: #ffffff;
+      --accent: #e63946;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+    header { 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 20px 6vw; position: fixed; width: 100%; top: 0; z-index: 1000;
+      background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .brand { font-weight: 300; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; }
+    nav { display: flex; gap: 24px; }
+    nav a { text-decoration: none; color: var(--text); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: 0.3s; }
+    nav a:hover { opacity: 1; color: var(--accent); }
+
+    /* Music Visualizer */
+    .music-player {
+      position: fixed; bottom: 40px; left: 40px; z-index: 2000;
+      display: flex; align-items: center; gap: 12px; cursor: pointer;
+      background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 30px;
+      backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
+    }
+    .bars { display: flex; align-items: flex-end; gap: 2px; height: 15px; }
+    .bars span { width: 2px; background: var(--accent); animation: play 1s ease-in-out infinite; display: none; }
+    .playing span { display: block; }
+    .bars span:nth-child(2) { animation-delay: 0.2s; height: 10px; }
+    .bars span:nth-child(3) { animation-delay: 0.4s; height: 8px; }
+    @keyframes play { 0%, 100% { height: 4px; } 50% { height: 15px; } }
+    .music-info { font-size: 10px; letter-spacing: 1px; font-weight: 600; opacity: 0.8; }
+
+    .hero { position: relative; height: 85vh; display: flex; align-items: center; justify-content: center; }
+    .hero video { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.4); }
+    .hero-content { text-align: center; }
+    .hero-content h1 { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(32px, 6vw, 64px); font-weight: 400; letter-spacing: -1px; }
+
+    .lookbook-container { padding: 120px 6vw; background: var(--bg); }
+    .lookbook-header { text-align: center; margin-bottom: 80px; }
+    .lookbook-header h2 { font-family: 'Bodoni Moda', serif; font-size: 38px; font-weight: 400; margin-bottom: 10px; font-style: italic; }
+    .lookbook-header p { font-size: 11px; letter-spacing: 4px; opacity: 0.4; text-transform: uppercase; }
+
+    .lookbook-flex { display: flex; justify-content: center; gap: 80px; align-items: flex-start; max-width: 1000px; margin: 0 auto; }
+    .look-item { flex: 1; max-width: 380px; }
+    .look-video-wrapper { position: relative; width: 100%; aspect-ratio: 9/14; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #111; }
+    .look-video-wrapper video { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.8s; }
+    .look-video-wrapper:hover video { opacity: 1; transform: scale(1.05); }
+
+    .look-caption { margin-top: 35px; text-align: left; }
+    .look-caption h3 { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 22px; color: var(--accent); margin-bottom: 12px; }
+    .look-caption p { font-size: 13px; line-height: 1.8; font-weight: 300; opacity: 0.6; }
+
+    .shop { padding: 100px 6vw; border-top: 1px solid rgba(255,255,255,0.05); }
+    .scroller { display: flex; gap: 30px; overflow-x: auto; scrollbar-width: none; padding-bottom: 20px; }
+    .scroller::-webkit-scrollbar { display: none; }
+    .product-card { min-width: 280px; text-align: center; }
+    .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; filter: grayscale(1); transition: 0.5s; margin-bottom: 15px; }
+    .product-card:hover img { filter: grayscale(0); }
+    .product-card h4 { font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; }
+
+    .wa-float { position: fixed; bottom: 40px; right: 40px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; transition: 0.3s; }
+    .wa-float:hover { transform: translateY(-5px); }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+    footer { padding: 80px 6vw; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .pay-img { height: 16px; opacity: 0.3; margin: 0 12px; filter: invert(1); }
+
+    @media (max-width: 768px) {
+      .lookbook-flex { flex-direction: column; align-items: center; gap: 60px; }
+      nav { display: none; }
+      .wa-float, .music-player { bottom: 20px; }
+      .music-player { left: 20px; }
+      .wa-float { right: 20px; width: 50px; height: 50px; }
+    }
+  </style>
+</head>
+
+<body onclick="initAudio()">
+
+  <audio id="seranaAudio" loop>
+    <source src="mp3/Serana.mp3" type="audio/mpeg">
+  </audio>
+
+  <header>
+    <div class="brand">For Revenge</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#lookbook">Lookbook</a>
+      <a href="#shop">Shop</a>
+      <a href="https://wa.me/6285821913780" target="_blank" style="color: #25d366; opacity: 1;">Order via WA</a>
+    </nav>
+  </header>
+
+  <div class="music-player" onclick="toggleMusic(event)">
+    <div class="bars" id="visualizer">
+      <span></span><span></span><span></span>
+    </div>
+    <span class="music-info" id="musicLabel">PAUSED — SERANA</span>
+  </div>
+
+  <section class="hero" id="hero">
+    <video autoplay muted loop playsinline><source src="vid/1.mp4" type="video/mp4"></video>
+    <div class="hero-content">
+      <h1>The Art of Letting Go.</h1>
+    </div>
+  </section>
+
+  <section class="lookbook-container" id="lookbook">
+    <div class="lookbook-header">
+      <p>Official Collection</p>
+      <h2>Patah Hati Babak 2</h2>
+    </div>
+    <div class="lookbook-flex">
+      <div class="look-item">
+        <div class="look-video-wrapper">
+          <video autoplay muted loop playsinline><source src="vid/2.mp4" type="video/mp4"></video>
+        </div>
+        <div class="look-caption">
+          <h3>“Serana Era”</h3>
+          <p>Setiap jahitan adalah bisikan tentang kenangan yang enggan pergi. Menggambarkan puncak patah hati, merelakan, dan berusaha melupakan sosok yang pernah menjadi rumah.</p>
+        </div>
+      </div>
+      <div class="look-item" style="margin-top: 80px;">
+        <div class="look-video-wrapper">
+          <video autoplay muted loop playsinline><source src="vid/3.mp4" type="video/mp4"></video>
+        </div>
+        <div class="look-caption">
+          <h3>“Jakarta Hari Ini”</h3>
+          <p>But perhaps you hate a thing and it's good for you and perhaps you love a thing and it's bad for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="scroller">
+      <div class="product-card"><img src="img/merchedise%20baju.jpg" alt="Product"><h4>Paket Patah Hati</h4></div>
+      <div class="product-card"><img src="img/sweter%20hodie.jpg" alt="Product"><h4>Jaket Sweater</h4></div>
+      <div class="product-card"><img src="img/hodie%20jaket.jpg" alt="Product"><h4>Koleksi Pilihan</h4></div>
+      <div class="product-card"><img src="img/hoodie.jpg" alt="Product"><h4>Hoodie Patah Hati</h4></div>
+      <div class="product-card"><img src="img/Kunci.jpg" alt="Product"><h4>Souvenir Patah Hati</h4></div>
+      <div class="product-card"><img src="img/baju%20female%20idle.jpg" alt="Product"><h4>T-Shirt Patah Hati</h4></div>
+    </div>
+  </section>
+
+  <a href="https://wa.me/6285821913780" class="wa-float" target="_blank" title="Chat Admin">
+    <svg viewBox="0 0 32 32"><path d="M16 2a14 14 0 0 0-14 14 14 14 0 0 0 2.14 7.41L2 30l6.78-2.11A14 14 0 1 0 16 2zm0 26a11.91 11.91 0 0 1-6.11-1.68l-.44-.26-4 1.25 1.28-3.92-.29-.46A11.89 11.89 0 1 1 16 28zm6.52-8.79c-.36-.18-2.13-1.05-2.46-1.17s-.57-.18-.81.18-1 1.2-1.22 1.47-.45.3-.81.12a10.19 10.19 0 0 1-3-1.85 11.27 11.27 0 0 1-2.07-2.58c-.22-.36 0-.54.16-.74s.36-.42.54-.63a2.44 2.44 0 0 0 .36-.6.67.67 0 0 0-.03-.63c-.09-.18-.81-1.95-1.11-2.67s-.6-.6-.81-.61h-.69a1.33 1.33 0 0 0-1 .45 4 4 0 0 0-1.26 3c0 1.77 1.29 3.48 1.47 3.72s2.54 3.88 6.16 5.44 4.36 2.08 5.92 1.93a5 5 0 0 0 3.32-2.34 4 4 0 0 0 .28-2.34c-.11-.18-.41-.3-.77-.48z"></path></svg>
+  </a>
+
+  <footer>
+    <div style="margin-bottom: 30px;">
+      <img src="img/visa.png" class="pay-img" alt="Visa">
+      <img src="img/MasterCard_Logo.svg.png" class="pay-img" alt="Mastercard">
+      <img src="img/Qris-01.jpg" class="pay-img" alt="QRIS">
+    </div>
+    <p style="font-size: 11px; opacity: 0.3; letter-spacing: 2px; text-transform: uppercase;">For Revenge Official Merchandise — 2026</p>
+  </footer>
+
+  <script>
+    const audio = document.getElementById('seranaAudio');
+    const visualizer = document.getElementById('visualizer');
+    const label = document.getElementById('musicLabel');
+    let isInitialized = false;
+
+    function initAudio() {
+      if (!isInitialized) {
+        audio.play().then(() => {
+          visualizer.classList.add('playing');
+          label.innerText = "PLAYING — SERANA";
+        }).catch(() => console.log("Waiting for user interaction..."));
+        isInitialized = true;
+      }
+    }
+
+    function toggleMusic(event) {
+      event.stopPropagation();
+      if (audio.paused) {
+        audio.play();
+        visualizer.classList.add('playing');
+        label.innerText = "PLAYING — SERANA";
+      } else {
+        audio.pause();
+        visualizer.classList.remove('playing');
+        label.innerText = "PAUSED — SERANA";
+      }
+    }
+
+    // Trigger otomatis saat scroll pertama kali jika klik belum dilakukan
+    window.addEventListener('scroll', initAudio, { once: true });
+  </script>
+
+</body>
+</html>
